@@ -22,13 +22,13 @@ export default function Contact() {
       if (!res.ok) throw new Error("No se pudo enviar el mensaje.");
       setState("ok");
       form.reset();
-    } catch (err: any) {
-      setErrorMsg(err.message || "Error desconocido.");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      setErrorMsg(msg || "Error desconocido.");
       setState("error");
     }
   }
 
-  // clases reutilizables para inputs en light/dark
   const inputBase =
     "mt-1 w-full rounded-md border bg-white text-gray-900 placeholder-gray-500 " +
     "border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent/60 focus:border-accent " +
@@ -65,7 +65,9 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
-                <Button disabled={state === "loading"}>{state === "loading" ? "Enviando..." : "Enviar"}</Button>
+                <Button disabled={state === "loading"}>
+                  {state === "loading" ? "Enviando..." : "Enviar"}
+                </Button>
                 <a href="mailto:alexis07isc@gmail.com" className="text-sm underline underline-offset-4 text-gray-800 dark:text-gray-200">
                   o envíame un correo: alexis07isc@gmail.com
                 </a>
