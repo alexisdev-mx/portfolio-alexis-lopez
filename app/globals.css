@@ -1,26 +1,51 @@
+/* app/globals.css — Tailwind v4 */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tokens */
+@theme {
+  --color-primary: #1E3A8A;
+  --color-primary-dark: #06B6D4;
+  --color-accent: #06B6D4;
+  --color-bgLight: #F9FAFB;
+  --color-bgDark: #1F2937;
+  --color-textLight: #111827;
+  --color-textDark: #F9FAFB;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Base */
+@layer base {
+  :root { color-scheme: light dark; }
+  html:focus-within { scroll-behavior: smooth; }
+  ::selection { background: var(--color-accent); color: #0b1020; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-[--color-bgLight] text-[--color-textLight]
+           dark:bg-[--color-bgDark] dark:text-[--color-textDark] antialiased;
+  }
+
+  /* Enlaces legibles siempre */
+  a { @apply text-inherit; }
+  a:hover { color: var(--color-accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px dashed var(--color-accent);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Utilidades */
+@layer utilities {
+  .container { @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-16 sm:py-20; }
+  .section-title { @apply text-3xl sm:text-4xl font-bold tracking-tight; }
+  .section-subtitle { @apply mt-2 text-base text-gray-600 dark:text-gray-200; }
+
+
+  /* Ayudas de color reutilizables */
+  .text-muted { @apply text-gray-600 dark:text-gray-300; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border
+                 border-gray-200 dark:border-gray-700 px-2 py-1
+                 text-xs text-gray-800 dark:text-gray-200; }
+  .card-surface { @apply bg-white dark:bg-gray-900 border
+                          border-gray-200 dark:border-gray-700; }
 }
