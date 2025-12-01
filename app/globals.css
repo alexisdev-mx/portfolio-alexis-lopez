@@ -13,6 +13,9 @@
   --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
 }
 
+/* Dark mode controlado por clase (.dark) */
+@custom-variant dark (&:where(.dark *));
+
 /* Base */
 @layer base {
   :root { color-scheme: light dark; }
