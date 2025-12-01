@@ -1,8 +1,19 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 export default function Hero() {
+  const shouldReduce = useReducedMotion();
+  const fadeUp = shouldReduce
+    ? {}
+    : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
+  const fadeUpDelayed = shouldReduce
+    ? {}
+    : { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6, delay: 0.1 } };
+  const fadeUpDelayed2 = shouldReduce
+    ? {}
+    : { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6, delay: 0.2 } };
+
   return (
     <section className="relative section">
       {/* Fondo con gradiente/partículas sutil */}
@@ -14,9 +25,7 @@ export default function Hero() {
       <div className="container max-w-5xl text-center">
         <motion.h1
           className="text-3xl sm:text-5xl font-extrabold tracking-tight"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          {...fadeUp}
         >
           Ing. Alexis López Lira —{" "}
           <span className="text-accent">
@@ -26,18 +35,14 @@ export default function Hero() {
 
         <motion.p
           className="mt-4 text-lg text-gray-600 dark:text-gray-200"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          {...fadeUpDelayed}
         >
           Creando soluciones innovadoras para el futuro.
         </motion.p>
 
         <motion.div
           className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          {...fadeUpDelayed2}
         >
           {/* Botón primario: con fallback de color por si falla la var CSS */}
           <Link

@@ -1,8 +1,18 @@
 "use client";
 import { experience } from "@/lib/data";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Experience() {
+  const shouldReduce = useReducedMotion();
+  const fadeInUp = shouldReduce
+    ? {}
+    : {
+        initial: { opacity: 0, y: 12 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.45 }
+      };
+
   return (
     <section id="experiencia" className="section">
       <div className="container">
@@ -14,10 +24,14 @@ export default function Experience() {
               <motion.li
                 key={item.company}
                 className="relative pl-10 sm:pl-12 md:pl-16"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.05 }}
+                {...(shouldReduce
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 12 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true },
+                      transition: { duration: 0.45, delay: i * 0.05 }
+                    })}
               >
                 <div aria-hidden className="absolute left-0 sm:left-1 md:left-2 top-1.5 h-3 w-3 rounded-full bg-accent shadow" />
                 <h3 className="text-lg font-semibold">{item.role} — <span className="opacity-80">{item.company}</span></h3>

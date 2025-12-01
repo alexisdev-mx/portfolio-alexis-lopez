@@ -7,6 +7,16 @@ type ContactBody = {
   mensaje: string;
 };
 
+const MAX_LENGTH = {
+  nombre: 120,
+  email: 180,
+  mensaje: 2000
+};
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 function isContactBody(x: unknown): x is ContactBody {
   if (typeof x !== "object" || x === null) return false;
   const r = x as Record<string, unknown>;
@@ -28,7 +38,20 @@ export async function POST(req: Request) {
       );
     }
 
-    const { nombre, email, mensaje } = raw;
+    const nombre = raw.nombre.trim();
+    const email = raw.email.trim();
+    const mensaje = raw.mensaje.trim();
+
+    if (!nombre || !email || !mensaje) {
+      return NextResponse.json({ error: "Todos los campos son requeridos." }, { status: 400 });
+    }
+    if (!isValidEmail(email)) {
+      return NextResponse.json({ error: "Email inválido." }, { status: 400 });
+    }
+    if (nombre.length > MAX_LENGTH.nombre || email.length > MAX_LENGTH.email || mensaje.length > MAX_LENGTH.mensaje) {
+      return NextResponse.json({ error: "Los datos exceden la longitud permitida." }, { status: 413 });
+    }
+
     await sendEmail({ nombre, email, mensaje });
 
     return NextResponse.json({ ok: true });

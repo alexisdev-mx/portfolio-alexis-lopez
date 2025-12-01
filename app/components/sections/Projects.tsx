@@ -5,12 +5,13 @@ import Card from "../ui/Card";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 
 export default function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
   const selected = projects.find((p) => p.id === openId);
+  const shouldReduce = useReducedMotion();
 
   return (
     <section id="proyectos" className="section">
@@ -20,7 +21,17 @@ export default function Projects() {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <motion.div key={p.id} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.05 }}>
+            <motion.div
+              key={p.id}
+              {...(shouldReduce
+                ? {}
+                : {
+                    initial: { opacity: 0, y: 12 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    transition: { duration: 0.45, delay: i * 0.05 }
+                  })}
+            >
               <Card>
                 <div className="relative h-48 w-full overflow-hidden rounded-t-xl">
                   <Image
