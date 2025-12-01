@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import { SITE } from "./site";
 import {
   SiJavascript,
   SiPython,
@@ -34,13 +35,13 @@ export const experience: ExperienceItem[] = [
   {
     company: "Mas Boletos",
     role: "Desarrollador",
-    period: "junio 2021 – febrero 2025",
+    period: "junio 2021 — febrero 2025",
     description: "Mejora de software y optimización de procesos."
   },
   {
     company: "SolSer Information Technology",
     role: "Desarrollador de Software e IA",
-    period: "marzo 2025 – actualidad",
+    period: "marzo 2025 — actualidad",
     description: "Desarrollo de aplicaciones y soluciones de IA."
   }
 ];
@@ -91,7 +92,7 @@ export const projects: Project[] = [
   {
     id: "flowmail-ai",
     name: "FlowMail AI",
-    description: "FlowMail AI lee, clasifica y actúa sobre tus correos electrónicos...",
+    description: "FlowMail AI lee, clasifica y actúa sobre tus correos electrónicos.",
     image:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop&q=60",
     tech: [
@@ -99,11 +100,11 @@ export const projects: Project[] = [
       { name: "Python", icon: SiPython },
       { name: "TensorFlow", icon: SiTensorflow }
     ],
-    github: "https://github.com/placeholder/flowmail-ai",
-    demo: "https://demo.example.com/flowmail-ai",
+    github: "https://github.com/allyrax/flowmail-ai",
+    demo: `${SITE.domain}/proyectos/flowmail-ai`,
     details: [
       "Clasificación automática con IA y etiquetas inteligentes.",
-      "Acciones automáticas configurables (responder, archivar, escalar).",
+      "Acciones configurables (responder, archivar, escalar) con flujos de aprobación.",
       "Panel de control con analítica de productividad."
     ]
   },
@@ -111,7 +112,7 @@ export const projects: Project[] = [
     id: "all-ia",
     name: "ALL-IA",
     description:
-      "RAG diseñado para resolver el problema de encontrar información precisa...",
+      "RAG diseñado para encontrar información precisa en repositorios internos.",
     image:
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=900&auto=format&fit=crop&q=60",
     tech: [
@@ -119,8 +120,8 @@ export const projects: Project[] = [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "Docker", icon: SiDocker }
     ],
-    github: "https://github.com/placeholder/all-ia",
-    demo: "https://demo.example.com/all-ia",
+    github: "https://github.com/allyrax/all-ia",
+    demo: `${SITE.domain}/proyectos/all-ia`,
     details: [
       "Búsqueda semántica con embeddings y FAISS.",
       "Controles de dominio y contexto.",
@@ -131,7 +132,7 @@ export const projects: Project[] = [
     id: "alamanofix",
     name: "AlaManoFix",
     description:
-      "Plataforma digital diseñada para conectar a personas con profesionales verificados...",
+      "Plataforma para conectar personas con profesionales verificados.",
     image:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=900&auto=format&fit=crop&q=60",
     tech: [
@@ -139,8 +140,8 @@ export const projects: Project[] = [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "MongoDB", icon: SiMongodb }
     ],
-    github: "https://github.com/placeholder/alamanofix",
-    demo: "https://demo.example.com/alamanofix",
+    github: "https://github.com/allyrax/alamanofix",
+    demo: `${SITE.domain}/proyectos/alamanofix`,
     details: [
       "Perfiles verificados y reseñas confiables.",
       "Búsqueda y filtros por ubicación y especialidad.",

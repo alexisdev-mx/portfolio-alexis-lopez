@@ -1,8 +1,8 @@
 import { MetadataRoute } from "next";
+import { SITE } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.ejemplo-portfolio-alexis.com";
   return [
-    { url: `${base}/`, priority: 1, changeFrequency: "monthly", lastModified: new Date() }
+    { url: `${SITE.domain}/`, priority: 1, changeFrequency: "monthly", lastModified: new Date() }
   ];
 }

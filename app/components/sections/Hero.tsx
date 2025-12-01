@@ -8,12 +8,12 @@ export default function Hero() {
       {/* Fondo con gradiente/partículas sutil */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 dark:to-white/5" />
-        <div className="absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
+        <div className="absolute -top-32 sm:-top-40 left-1/2 h-[360px] w-[360px] sm:h-[500px] sm:w-[500px] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
       </div>
 
-      <div className="container text-center">
+      <div className="container max-w-5xl text-center">
         <motion.h1
-          className="text-4xl sm:text-5xl font-extrabold tracking-tight"
+          className="text-3xl sm:text-5xl font-extrabold tracking-tight"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -34,7 +34,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          className="mt-8 flex items-center justify-center gap-4"
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -43,7 +43,7 @@ export default function Hero() {
           <Link
             href="#proyectos"
             className="
-    inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium
+    inline-flex w-full sm:w-auto items-center justify-center rounded-md px-5 py-3 text-sm font-medium
     shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent]
     text-white
     bg-[#1E3A8A] bg-[--color-primary] hover:opacity-90
@@ -58,7 +58,7 @@ export default function Hero() {
           <Link
             href="#contacto"
             className="
-    inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium
+    inline-flex w-full sm:w-auto items-center justify-center rounded-md px-5 py-3 text-sm font-medium
     border focus:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent]
     bg-transparent text-gray-800 border-gray-300 hover:bg-gray-100
     dark:text-white dark:border-gray-600 dark:bg-white/10 dark:hover:bg-white/15

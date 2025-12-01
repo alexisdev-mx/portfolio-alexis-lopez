@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { SITE } from "@/lib/site";
 
 const LINKS = [
   { href: "#sobre-mi", label: "Sobre mí" },
@@ -85,7 +86,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b border-gray-200 dark:border-gray-800 bg-white/85 dark:bg-gray-900/85 backdrop-blur">
       <nav className="container flex h-16 items-center justify-between">
         <Link href="/" className="font-semibold tracking-tight text-lg text-gray-900 dark:text-gray-100">
-          Alexis <span className="text-accent">López</span>
+          {SITE.name}
         </Link>
 
         {/* Desktop */}

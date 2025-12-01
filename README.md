@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio de Alexis López Lira
+Sitio de portafolio personal (Next.js 15 + React 19 + TypeScript) con Tailwind CSS v4, Framer Motion y sección de contacto integrada a Formspree (o servicio compatible).
 
-## Getting Started
+## Tecnologías clave
+- Next.js App Router, React 19, TypeScript, fuentes con `next/font`.
+- Tailwind CSS v4 (tokens en `app/globals.css`), `tailwind-merge` y PostCSS.
+- Framer Motion para animaciones, `next-themes` para modo claro/oscuro, React Icons.
+- API route `/api/contact` → `lib/send-email.ts` (modo simulado si no hay endpoint).
 
-First, run the development server:
+## Scripts
+- `npm run dev` – servidor de desarrollo en `http://localhost:3000`.
+- `npm run lint` – ESLint (flat config) con reglas Next.
+- `npm run typecheck` – TypeScript sin emitir salida.
+- `npm run build` – build de producción.
+- `npm start` – servidor de producción (requiere `npm run build` previo).
 
+## Configuración de entorno
+1) Crea `.env.local` a partir de `.env.example`.
+2) Define `NEXT_PUBLIC_SITE_URL` con el dominio público (para metadatos/robots/sitemap).
+3) Define `FORMSPREE_ENDPOINT` si quieres envío real en `/api/contact` (p. ej. `https://formspree.io/f/XXXXXX`).  
+   - Si no se define, el endpoint funciona en modo **simulado**: registra en consola y responde `ok` (útil para desarrollo/demo).
+
+## Notas de Tailwind v4
+- No se usa `tailwind.config.*`: los tokens y utilidades viven en `app/globals.css` mediante `@theme`, `@layer base`, `@layer utilities`.
+- PostCSS está configurado en `postcss.config.mjs` con `@tailwindcss/postcss`.
+
+## Configuración de Next.js
+- El archivo activo es `next.config.mjs` (incluye `reactStrictMode` y patrones de imágenes remotas de Unsplash).
+- No existe `next.config.ts`; mantener un único archivo evita conflictos de carga.
+
+## Contacto (/api/contact)
+- Valida `nombre`, `email` y `mensaje` como strings.
+- Llama a `sendEmail` con el payload; propaga error 500 si el proveedor responde fallo.
+- En modo simulado (sin `FORMSPREE_ENDPOINT`) no se envía correo, pero la UI recibe `ok` y limpia el formulario.
+
+## Ejecutar en local
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# abrir http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## QA rápida
+- `npm run lint`
+- `npm run typecheck`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Despliegue
+- Compatible con Vercel u otro host de Node 18+.
+- Define variables de entorno (al menos `FORMSPREE_ENDPOINT` si quieres envío real).
+- Revisa `robots.ts` y `sitemap.ts` para actualizar el dominio final antes de publicar.

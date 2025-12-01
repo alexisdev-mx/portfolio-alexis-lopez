@@ -21,7 +21,7 @@ export default function About() {
         <motion.div className="relative h-72 md:h-80 rounded-xl overflow-hidden" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
           <Image
             src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=60"
-            alt="Alexis en entorno tecnológico (placeholder)"
+            alt="Alexis en entorno tecnológico"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"

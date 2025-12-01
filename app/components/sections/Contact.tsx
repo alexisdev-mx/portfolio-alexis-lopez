@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Button from "../ui/Button";
+import { SITE } from "@/lib/site";
 
 export default function Contact() {
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
@@ -68,8 +69,8 @@ export default function Contact() {
                 <Button disabled={state === "loading"}>
                   {state === "loading" ? "Enviando..." : "Enviar"}
                 </Button>
-                <a href="mailto:alexis07isc@gmail.com" className="text-sm underline underline-offset-4 text-gray-800 dark:text-gray-200">
-                  o envíame un correo: alexis07isc@gmail.com
+                <a href={`mailto:${SITE.email}`} className="text-sm underline underline-offset-4 text-gray-800 dark:text-gray-200">
+                  o envíame un correo: {SITE.email}
                 </a>
               </div>
 
@@ -82,12 +83,12 @@ export default function Contact() {
             <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
               <h3 className="text-lg font-semibold">Redes</h3>
               <ul className="mt-2 space-y-2 text-sm">
-                <li><a className="hover:text-accent" href="https://www.linkedin.com/in/placeholder" target="_blank" rel="noreferrer">LinkedIn</a></li>
-                <li><a className="hover:text-accent" href="https://github.com/placeholder" target="_blank" rel="noreferrer">GitHub</a></li>
-                <li><a className="hover:text-accent" href="https://x.com/placeholder" target="_blank" rel="noreferrer">Twitter/X</a></li>
+                <li><a className="hover:text-accent" href={SITE.socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
+                <li><a className="hover:text-accent" href={SITE.socials.github} target="_blank" rel="noreferrer">GitHub</a></li>
+                <li><a className="hover:text-accent" href={SITE.socials.twitter} target="_blank" rel="noreferrer">Twitter/X</a></li>
               </ul>
               <h4 className="mt-4 font-medium">Correo</h4>
-              <a className="text-sm hover:text-accent" href="mailto:alexis07isc@gmail.com">alexis07isc@gmail.com</a>
+              <a className="text-sm hover:text-accent" href={`mailto:${SITE.email}`}>{SITE.email}</a>
             </div>
           </div>
         </div>
